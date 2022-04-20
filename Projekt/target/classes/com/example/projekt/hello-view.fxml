@@ -4,7 +4,9 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projekt.HelloController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+      prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.projekt.HelloController">
     <children>
         <VBox prefHeight="400.0" prefWidth="600.0">
             <children>
@@ -12,96 +14,104 @@
                     <children>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                             <children>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                                      <ImageView fitHeight="70.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
-                                          <image>
-                                              <Image url="@server.png" />
-                                          </image>
-                                      </ImageView>
-                              <Label fx:id="currentUser_server1" />
-                           </children>
-                        </HBox>
-                                <ProgressBar fx:id="progressBar_server1" prefWidth="200.0" progress="0.11" />
-                                <Label fx:id="label_server1" text="10%" />
+                                <HBox alignment="CENTER" prefHeight="60.0" prefWidth="100.0">
+                                    <children>
+                                        <ImageView fitHeight="70.0" fitWidth="65.0" pickOnBounds="true"
+                                                   preserveRatio="true">
+                                            <image>
+                                                <Image url="@server.png"/>
+                                            </image>
+                                        </ImageView>
+                                        <Label fx:id="currentUser_server1"/>
+                                    </children>
+                                </HBox>
+                                <ProgressBar fx:id="progressBar_server1" prefWidth="200.0" progress="0.0"/>
+                                <Label fx:id="progressBarLabel_server1" text="0%"/>
                             </children>
                         </VBox>
                         <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
                             <children>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                                      <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                                          <image>
-                                              <Image url="@server.png" />
-                                          </image>
-                                      </ImageView>
-                              <Label fx:id="currentUser_server2" />
-                           </children>
-                        </HBox>
-                                <ProgressBar fx:id="progressBar_server2" prefWidth="200.0" progress="0.2" />
-                                <Label fx:id="label_server2" text="20%" />
+                                <HBox alignment="CENTER" prefHeight="60.0" prefWidth="200.0">
+                                    <children>
+                                        <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true"
+                                                   preserveRatio="true">
+                                            <image>
+                                                <Image url="@server.png"/>
+                                            </image>
+                                        </ImageView>
+                                        <Label fx:id="currentUser_server2"/>
+                                    </children>
+                                </HBox>
+                                <ProgressBar fx:id="progressBar_server2" prefWidth="200.0" progress="0.0"/>
+                                <Label fx:id="progressBarLabel_server2" text="0%"/>
                             </children>
                         </VBox>
                         <VBox alignment="CENTER" layoutX="110.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
                             <children>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                                      <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                                          <image>
-                                              <Image url="@server.png" />
-                                          </image>
-                                      </ImageView>
-                              <Label fx:id="currentUser_server3" />
-                           </children>
-                        </HBox>
-                                <ProgressBar fx:id="progressBar_server3" prefWidth="200.0" progress="0.3" />
-                                <Label fx:id="label_server3" text="30%" />
+                                <HBox alignment="CENTER" prefHeight="60.0" prefWidth="200.0">
+                                    <children>
+                                        <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true"
+                                                   preserveRatio="true">
+                                            <image>
+                                                <Image url="@server.png"/>
+                                            </image>
+                                        </ImageView>
+                                        <Label fx:id="currentUser_server3"/>
+                                    </children>
+                                </HBox>
+                                <ProgressBar fx:id="progressBar_server3" prefWidth="200.0" progress="0.0"/>
+                                <Label fx:id="progressBarLabel_server3" text="0%"/>
                             </children>
                         </VBox>
                         <VBox alignment="CENTER" layoutX="210.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
                             <children>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                                      <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                                          <image>
-                                              <Image url="@server.png" />
-                                          </image>
-                                      </ImageView>
-                              <Label fx:id="currentUser_server4" />
-                           </children>
-                        </HBox>
-                                <ProgressBar fx:id="progressBar_server4" prefWidth="200.0" progress="0.0" />
-                                <Label fx:id="label_server4" text="0%" />
+                                <HBox alignment="CENTER" prefHeight="60.0" prefWidth="200.0">
+                                    <children>
+                                        <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true"
+                                                   preserveRatio="true">
+                                            <image>
+                                                <Image url="@server.png"/>
+                                            </image>
+                                        </ImageView>
+                                        <Label fx:id="currentUser_server4"/>
+                                    </children>
+                                </HBox>
+                                <ProgressBar fx:id="progressBar_server4" prefWidth="200.0" progress="0.0"/>
+                                <Label fx:id="progressBarLabel_server4" text="0%"/>
                             </children>
                         </VBox>
                         <VBox alignment="CENTER" layoutX="310.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
                             <children>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                                      <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                                          <image>
-                                              <Image url="@server.png" />
-                                          </image>
-                                      </ImageView>
-                              <Label fx:id="currentUser_server5" />
-                           </children>
-                        </HBox>
-                                <ProgressBar fx:id="progressBar_server5" prefWidth="200.0" progress="1.0" />
-                                <Label fx:id="label_server5" text="100%" />
+                                <HBox alignment="CENTER" prefHeight="60.0" prefWidth="200.0">
+                                    <children>
+                                        <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true"
+                                                   preserveRatio="true">
+                                            <image>
+                                                <Image url="@server.png"/>
+                                            </image>
+                                        </ImageView>
+                                        <Label fx:id="currentUser_server5"/>
+                                    </children>
+                                </HBox>
+                                <ProgressBar fx:id="progressBar_server5" prefWidth="200.0" progress="0.0"/>
+                                <Label fx:id="progressBarLabel_server5" text="0%"/>
                             </children>
                         </VBox>
                     </children>
                 </HBox>
-            <TableView fx:id="usersTableView" prefHeight="458.0" prefWidth="600.0">
-              <columns>
-                <TableColumn fx:id="idColumn" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" text="id" />
-                <TableColumn fx:id="filesColumn" maxWidth="450.0" minWidth="450.0" prefWidth="450.0" text="files" />
-                  <TableColumn fx:id="waitingTimeColumn" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="waitingTime" />
-              </columns>
-            </TableView>
+                <TableView fx:id="usersTableView" prefHeight="458.0" prefWidth="600.0">
+                    <columns>
+                        <TableColumn fx:id="idColumn" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" text="id"/>
+                        <TableColumn fx:id="filesColumn" maxWidth="450.0" minWidth="450.0" prefWidth="450.0"
+                                     text="files"/>
+                        <TableColumn fx:id="waitingTimeColumn" maxWidth="100.0" minWidth="100.0" prefWidth="100.0"
+                                     text="waitingTime"/>
+                    </columns>
+                </TableView>
                 <Pane nodeOrientation="RIGHT_TO_LEFT" prefHeight="200.0" prefWidth="200.0">
                     <children>
-                        <Button fx:id="generateButton" alignment="CENTER" mnemonicParsing="false" onAction="#onGenerateButtonClick" text="Generuj" />
+                        <Button fx:id="generateButton" alignment="CENTER" mnemonicParsing="false"
+                                onAction="#onGenerateButtonClick" text="Generuj"/>
                     </children>
                 </Pane>
             </children>

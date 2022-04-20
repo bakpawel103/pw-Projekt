@@ -1,5 +1,6 @@
 package com.example.projekt.entities;
 
+import com.example.projekt.AuctionArbiter;
 import javafx.application.Platform;
 import javafx.scene.control.TableView;
 
@@ -10,31 +11,27 @@ public class User extends Thread {
     private List<Integer> files;
     private float waitingTime;
 
+    private boolean isBlocked;
+
     private TableView<User> usersTableView;
 
     public User(int id, List<Integer> files, float waitingTime, TableView<User> usersTableView) {
         this.id = id;
         this.files = files;
+        Collections.sort(this.files);
         this.waitingTime = waitingTime;
         this.usersTableView = usersTableView;
 
         this.setDaemon(true);
         this.start();
     }
+
     public long getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public List<Integer> getFiles() {
         return files;
-    }
-
-    public void setFiles(List<Integer> files) {
-        this.files = files;
     }
 
     public float getWaitingTime() {
@@ -45,6 +42,14 @@ public class User extends Thread {
         this.waitingTime = waitingTime;
     }
 
+    public boolean isBlocked() {
+        return isBlocked;
+    }
+
+    public void setBlocked(boolean blocked) {
+        isBlocked = blocked;
+    }
+
     @Override
     public void run() {
         while (true) {
@@ -53,6 +58,10 @@ public class User extends Thread {
                     setWaitingTime(getWaitingTime() + 1);
 
                     this.usersTableView.refresh();
+
+                    if(getFiles().size() == 0) {
+                        AuctionArbiter.getInstance().deleteUser(this);
+                    }
                 });
 
                 Thread.sleep(1000);
