@@ -7,6 +7,7 @@ import javafx.scene.control.ProgressBar;
 public class Server extends Thread {
     private String name;
     private User currentServingUser;
+    private int currentServingUserSize;
     private Label currentUserIdLabel;
     private ProgressBar progressBar;
     private Label progressBarLabel;
@@ -27,9 +28,14 @@ public class Server extends Thread {
         return currentServingUser != null;
     }
 
-    public void setCurrentServingUser(User currentServingUser) {
+    public void setCurrentServingUser(User currentServingUser, int currentServingUserSize) {
         this.currentServingUser = currentServingUser;
-        this.currentServingUser.setBlocked(true);
+        this.currentServingUser
+                .getFilesInfo()
+                .stream()
+                .filter(file -> !file.isBlocked())
+                .findFirst().get().setBlocked(true);
+        this.currentServingUserSize = currentServingUserSize;
         currentUploadingProgress = 0;
 
         Platform.runLater(() -> {
@@ -45,14 +51,13 @@ public class Server extends Thread {
                     currentUploadingProgress += 10;
 
                     Platform.runLater(() -> {
-                        progressBar.setProgress((float) currentUploadingProgress / currentServingUser.getFiles().get(0));
-                        progressBarLabel.setText(String.format("%.0f", (float) currentUploadingProgress / currentServingUser.getFiles().get(0) * 100) + "%");
+                        progressBar.setProgress((float) currentUploadingProgress / currentServingUserSize);
+                        progressBarLabel.setText(String.format("%.0f", (float) currentUploadingProgress / currentServingUserSize * 100) + "%");
                     });
 
-                    if((float) currentUploadingProgress / currentServingUser.getFiles().get(0) >= 1.0f) {
+                    if((float) currentUploadingProgress / currentServingUserSize >= 1.0f) {
                         Platform.runLater(() -> {
-                            currentServingUser.getFiles().remove(0);
-                            currentServingUser.setBlocked(false);
+                            currentServingUser.getFilesInfo().remove(0);
                             currentServingUser = null;
 
                             currentUserIdLabel.setText("");

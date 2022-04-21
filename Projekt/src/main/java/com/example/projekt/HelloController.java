@@ -2,6 +2,7 @@ package com.example.projekt;
 
 import com.example.projekt.entities.Server;
 import com.example.projekt.entities.User;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -90,7 +91,7 @@ public class HelloController implements Initializable {
     private void initializeTableView() {
         //set up the columns in the table
         idColumn.setCellValueFactory(new PropertyValueFactory<User, String>("id"));
-        filesColumn.setCellValueFactory(new PropertyValueFactory<User, String>("files"));
+        filesColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFiles().toString()));
         waitingTimeColumn.setCellValueFactory(new PropertyValueFactory<User, String>("waitingTime"));
 
         usersTableView.setItems(users);
@@ -114,9 +115,9 @@ public class HelloController implements Initializable {
     }
 
     private User generateUser() {
-        List<Integer> files = new ArrayList<>();
+        List<FileInfo> files = new ArrayList<>();
         for (int index = 0; index < getRandomNumberUsingNextInt(1, 5); index++) {
-            files.add(getRandomNumberUsingNextInt(50, 200));
+            files.add(new FileInfo(getRandomNumberUsingNextInt(100, 1000), false));
         }
 
         return new User(userIteratorId, files, 0.0f, usersTableView);

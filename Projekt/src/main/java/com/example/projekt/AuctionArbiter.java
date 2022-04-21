@@ -55,7 +55,10 @@ public final class AuctionArbiter extends Thread {
                     if (!server.isBusy()) {
                         User nextServingUser = getNextServingUser();
                         if (nextServingUser != null) {
-                            server.setCurrentServingUser(nextServingUser);
+                            server.setCurrentServingUser(nextServingUser, nextServingUser.getFilesInfo()
+                                    .stream()
+                                    .filter(file -> !file.isBlocked())
+                                    .findFirst().get().getSize());
                         }
                     }
                 }
@@ -71,10 +74,10 @@ public final class AuctionArbiter extends Thread {
         User bestPredictionUser = null;
         float bestPredictionValue = 0;
 
-        ObservableList<User> notBlockedUsers = users.filtered(user -> !user.isBlocked() && user.getFiles().size() > 0);
+        ObservableList<User> notBlockedUsers = users.filtered(user -> user.getFilesInfo().size() > 0 && user.getFilesInfo().stream().anyMatch(file -> !file.isBlocked()));
 
         for (User user : notBlockedUsers) {
-            float size = (float) (1 / user.getFiles().get(0)) / notBlockedUsers.size();
+            float size = (float) (1 / user.getFilesInfo().get(0).getSize()) / notBlockedUsers.size();
             float arrive = (float) (Math.sqrt(user.getWaitingTime()) / notBlockedUsers.size());
             float prediction = size + arrive;
             if (prediction > bestPredictionValue) {

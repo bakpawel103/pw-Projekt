@@ -1,24 +1,24 @@
 package com.example.projekt.entities;
 
 import com.example.projekt.AuctionArbiter;
+import com.example.projekt.FileInfo;
 import javafx.application.Platform;
 import javafx.scene.control.TableView;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class User extends Thread {
     private int id;
-    private List<Integer> files;
+    private List<FileInfo> filesInfo;
     private float waitingTime;
-
-    private boolean isBlocked;
 
     private TableView<User> usersTableView;
 
-    public User(int id, List<Integer> files, float waitingTime, TableView<User> usersTableView) {
+    public User(int id, List<FileInfo> filesInfo, float waitingTime, TableView<User> usersTableView) {
         this.id = id;
-        this.files = files;
-        Collections.sort(this.files);
+        this.filesInfo = filesInfo;
+        this.filesInfo.sort(Comparator.comparing(FileInfo::getSize));
         this.waitingTime = waitingTime;
         this.usersTableView = usersTableView;
 
@@ -30,8 +30,12 @@ public class User extends Thread {
         return id;
     }
 
+    public List<FileInfo> getFilesInfo() {
+        return filesInfo;
+    }
+
     public List<Integer> getFiles() {
-        return files;
+        return filesInfo.stream().map(FileInfo::getSize).collect(Collectors.toList());
     }
 
     public float getWaitingTime() {
@@ -40,14 +44,6 @@ public class User extends Thread {
 
     public void setWaitingTime(float waitingTime) {
         this.waitingTime = waitingTime;
-    }
-
-    public boolean isBlocked() {
-        return isBlocked;
-    }
-
-    public void setBlocked(boolean blocked) {
-        isBlocked = blocked;
     }
 
     @Override
@@ -59,7 +55,7 @@ public class User extends Thread {
 
                     this.usersTableView.refresh();
 
-                    if(getFiles().size() == 0) {
+                    if(getFilesInfo().size() == 0) {
                         AuctionArbiter.getInstance().deleteUser(this);
                     }
                 });
